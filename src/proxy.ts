@@ -2,12 +2,6 @@ import { trimDots } from './utils.ts'
 
 type TrackCallback = (path: string) => void
 
-type AnyUsage = boolean | Record<string, AnyUsage>
-
-type DataRecord = {
-  [key: string]: AnyUsage
-}
-
 type ObjectWithPaths<TargetType> = {
   nodePath: string
 } & TargetType
@@ -22,8 +16,6 @@ export const removeArrayIndex = (path: string) => {
 
   return trimDots(denumberedString)
 }
-
-const dataUsage: DataRecord = {}
 
 // Recursively adding paths (.nodePath property) to each Object node in the target (i.e. foo.bar.baz)
 export const addPaths = <TargetType>(
@@ -69,9 +61,9 @@ export const attachProxy = <TargetType>(
   return new Proxy(target, handler)
 }
 
-export const proxyTrackData = <TargetType extends Object>(
+export const proxyTrackData = <TargetType>(
   obj: TargetType,
   tracker: TrackCallback,
 ) => {
-  return attachProxy(addPaths(structuredClone(obj)), tracker)
+  return attachProxy(addPaths(structuredClone(obj)), tracker) as TargetType
 }

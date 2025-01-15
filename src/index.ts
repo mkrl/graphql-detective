@@ -46,16 +46,24 @@ const query = /* GraphQL */ `
   }
 `
 
-// graphql({
-//     schema: schemaWithMocks,
-//     source: query
-// }).then(result => {
-//     const data = proxyTrackData(result.data, console.log)
-//     const a = data.author.posts[0].votes
-//     const b = data.author.firstName
-// })
+const usages = new Set<string>()
+
+const trackUsage = (path: string) => {
+  usages.add(path)
+}
 
 const docNode = parse(query)
 const fragments = getFragments(docNode)
 const fields = getQueryFields(docNode, fragments)
-console.log(fields)
+
+graphql({
+  schema: schemaWithMocks,
+  source: query,
+}).then((result) => {
+  const data = proxyTrackData(result.data, trackUsage)
+  const a = data.author.posts[0].votes
+  const b = data.author.firstName
+
+  const diff = fields.difference(usages)
+  console.log(diff)
+})

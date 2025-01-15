@@ -14,6 +14,7 @@ export type ParsableNode =
   | OperationDefinitionNode
   | FragmentDefinitionNode
 
+// Parsing an existing document node to return a set of field addresses (i.e. 'author.posts.title')
 export const getQueryFields = (docNode: DocumentNode, fragments: Fragments) => {
   const fields = new Set<string>()
 
@@ -30,10 +31,14 @@ export const getQueryFields = (docNode: DocumentNode, fragments: Fragments) => {
 
       extractField(parentPath, fragment)
     } else {
-      node?.selectionSet?.selections.forEach((childNode) => {
+      node.selectionSet?.selections.forEach((childNode) => {
         let newParent = ''
 
-        if (childNode.kind === Kind.FIELD) {
+        if (
+          childNode.kind === Kind.FIELD &&
+          // This condition is here so operation names (query names) are not included in the path
+          node.kind !== Kind.OPERATION_DEFINITION
+        ) {
           newParent = parentPath + (parentPath ? '.' : '') + node.name?.value
         } else {
           newParent = parentPath
@@ -48,14 +53,14 @@ export const getQueryFields = (docNode: DocumentNode, fragments: Fragments) => {
   return fields
 }
 
-// Extract fragments from a DocumentNode so they can later be used to build a usage object
+// Extract fragments from a DocumentNode so they can later be used to parse it
 export const getFragments = (query: DocumentNode) => {
   const fragments: Fragments = {}
 
   query.definitions
-    .filter((def) => def.kind === 'FragmentDefinition')
-    .forEach((frg) => {
-      fragments[frg?.name?.value] = frg
+    .filter((definition) => definition.kind === 'FragmentDefinition')
+    .forEach((fragment) => {
+      fragments[fragment.name.value] = fragment
     })
 
   return fragments
