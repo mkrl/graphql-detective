@@ -1,0 +1,4 @@
+packages:
+  - "preview"
+  - "lib/core"
+  - "lib/apollo"

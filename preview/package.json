@@ -1,0 +1,24 @@
+{
+  "name": "@graphql-detective/preview",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "rsbuild dev --open",
+    "build": "rsbuild build",
+    "preview": "rsbuild preview"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.12.6",
+    "@graphql-detective/apollo": "workspace:*",
+    "graphql": "^16.10.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@rsbuild/core": "^1.1.8",
+    "@rsbuild/plugin-react": "^1.0.7",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.7.2"
+  }
+}

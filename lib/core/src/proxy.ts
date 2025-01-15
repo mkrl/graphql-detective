@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { trimDots } from './utils.ts'
 
 type TrackCallback = (path: string) => void

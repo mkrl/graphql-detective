@@ -1,0 +1,33 @@
+{
+  "name": "@graphql-detective/apollo",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "rslib build",
+    "dev": "rslib build --watch",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.3",
+    "@graphql-tools/mock": "^9.0.14",
+    "@graphql-tools/schema": "^10.0.16",
+    "@rslib/core": "^0.3.1",
+    "@types/node": "^22.8.1",
+    "typescript": "^5.7.3",
+    "vitest": "^2.1.8"
+  },
+  "private": true,
+  "dependencies": {
+    "@apollo/client": "^3.12.6",
+    "@graphql-detective/core": "workspace:*"
+  }
+}

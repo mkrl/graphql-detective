@@ -23,7 +23,7 @@ export const getQueryFields = (docNode: DocumentNode, fragments: Fragments) => {
     if (node.kind === Kind.INLINE_FRAGMENT) {
       throw new Error('Inline Fragments are not yet supported')
     }
-    if (node.kind === Kind.FIELD) {
+    if (node.kind === Kind.FIELD && node.name.value !== '__typename') {
       fields.add(parentPath + (parentPath ? '.' : '') + node.name.value)
     }
     if (node.kind === Kind.FRAGMENT_SPREAD) {
@@ -64,4 +64,9 @@ export const getFragments = (query: DocumentNode) => {
     })
 
   return fragments
+}
+
+export const parseDocumentNode = (node: DocumentNode) => {
+  const fragments = getFragments(node)
+  return getQueryFields(node, fragments)
 }
