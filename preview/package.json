@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "rsbuild dev --open",
+    "dev:apollo": "PUBLIC_CLIENT=apollo rsbuild dev --open",
+    "dev:urql": "PUBLIC_CLIENT=urql rsbuild dev --open",
     "build": "rsbuild build",
     "preview": "rsbuild preview"
   },
