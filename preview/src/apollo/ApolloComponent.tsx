@@ -1,4 +1,4 @@
-import './App.css'
+import '../App.css'
 import { gql, useQuery } from '@apollo/client'
 
 const GET_LOCATIONS = gql`
@@ -12,7 +12,7 @@ const GET_LOCATIONS = gql`
   }
 `
 
-const App = () => {
+export const ApolloComponent = () => {
   const { loading, data } = useQuery(GET_LOCATIONS)
   return (
     <div className="content">
@@ -29,5 +29,3 @@ const App = () => {
     </div>
   )
 }
-
-export default App

@@ -1,5 +1,5 @@
 {
-  "name": "@graphql-detective/core",
+  "name": "@graphql-detective/urql",
   "version": "1.0.0",
   "type": "module",
   "exports": {
@@ -10,7 +10,9 @@
   },
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rslib build",
     "dev": "rslib build --watch",
@@ -24,7 +26,8 @@
   },
   "private": true,
   "dependencies": {
-    "graphql": "^16.10.0",
-    "nanostores": "^0.11.3"
+    "@graphql-detective/core": "workspace:*",
+    "urql": "^4.2.1",
+    "wonka": "^6.3.4"
   }
 }

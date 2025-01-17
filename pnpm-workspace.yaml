@@ -2,3 +2,4 @@ packages:
   - "preview"
   - "lib/core"
   - "lib/apollo"
+  - "lib/urql"
