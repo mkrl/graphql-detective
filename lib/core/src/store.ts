@@ -7,7 +7,7 @@ type FieldStore = {
 export const $usageStore = atom<FieldStore>({})
 export const $queryStore = atom<FieldStore>({})
 
-export const initUsage = (queryName: string) => {
+export const initUsageStoreForQuery = (queryName: string) => {
   $usageStore.set({
     ...$queryStore.get(),
     [queryName]: new Set<string>(),
