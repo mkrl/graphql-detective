@@ -5,9 +5,8 @@ import {
   recordQuery,
   trackUsage,
 } from '@graphql-detective/core'
-import type { Exchange, Operation, OperationResult } from 'urql'
-import { filter, map, merge, pipe, tap } from 'wonka'
-import type { Source } from 'wonka'
+import type { Exchange, OperationResult } from 'urql'
+import { map, pipe } from 'wonka'
 
 const isProcessed = (result: OperationResult) => {
   const { operation, data } = result
@@ -25,15 +24,14 @@ export const detectiveExchange: Exchange =
       forward,
       map((op) => {
         if (isProcessed(op)) {
-          const fields = parseDocumentNode(op.operation.query)
-          // @TODO: properly extract query name from DocumentNode
-          recordQuery('someQuery', fields)
-          initUsageStoreForQuery('someQuery')
+          const [queryName, fields] = parseDocumentNode(op.operation.query)
+          recordQuery(queryName, fields)
+          initUsageStoreForQuery(queryName)
 
           return {
             ...op,
             data: proxyTrackData(op.data, (path) =>
-              trackUsage('someQuery', path),
+              trackUsage(queryName, path),
             ),
           }
         }

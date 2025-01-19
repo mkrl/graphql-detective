@@ -1,4 +1,4 @@
-import { Client, Provider, cacheExchange, fetchExchange } from 'urql'
+import { Client, Provider, fetchExchange } from 'urql'
 
 import { detectiveExchange } from '@graphql-detective/urql'
 import { UrqlComponent } from './UrqlComponent.tsx'

@@ -2,7 +2,7 @@ import '../App.css'
 import { gql, useQuery } from 'urql'
 
 const GET_AUTHOR = gql`
-    query Author {
+    query getAuthor {
       author(id: 6) {
         firstName
         id

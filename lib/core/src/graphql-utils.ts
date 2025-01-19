@@ -15,14 +15,10 @@ export type ParsableNode =
   | FragmentDefinitionNode
 
 // Parsing an existing document node to return a set of field addresses (i.e. 'author.posts.title')
-export const getQueryFields = (docNode: DocumentNode, fragments: Fragments) => {
+export const getQueryFields = (docNode: ParsableNode, fragments: Fragments) => {
   const fields = new Set<string>()
 
   const extractField = (parentPath: string, node: ParsableNode) => {
-    // @TODO: Add support for InlineFragmentNode
-    if (node.kind === Kind.INLINE_FRAGMENT) {
-      throw new Error('Inline Fragments are not yet supported')
-    }
     if (node.kind === Kind.FIELD && node.name.value !== '__typename') {
       fields.add(parentPath + (parentPath ? '.' : '') + node.name.value)
     }
@@ -36,6 +32,7 @@ export const getQueryFields = (docNode: DocumentNode, fragments: Fragments) => {
 
         if (
           childNode.kind === Kind.FIELD &&
+          node.kind !== Kind.INLINE_FRAGMENT &&
           // This condition is here so operation names (query names) are not included in the path
           node.kind !== Kind.OPERATION_DEFINITION
         ) {
@@ -48,7 +45,7 @@ export const getQueryFields = (docNode: DocumentNode, fragments: Fragments) => {
       })
     }
   }
-  extractField('', docNode.definitions[0] as ParsableNode)
+  extractField('', docNode)
 
   return fields
 }
@@ -66,7 +63,22 @@ export const getFragments = (query: DocumentNode) => {
   return fragments
 }
 
-export const parseDocumentNode = (node: DocumentNode) => {
+export const getQueryName = (operation: OperationDefinitionNode) =>
+  operation.name?.value
+
+export const parseDocumentNode = (
+  node: DocumentNode,
+): [string, Set<string>] => {
   const fragments = getFragments(node)
-  return getQueryFields(node, fragments)
+  const firstOperationNode = node.definitions.find(
+    (definition) => definition.kind === Kind.OPERATION_DEFINITION,
+  )
+  if (!firstOperationNode) {
+    throw new Error('No operation definition found in the document node')
+  }
+  const queryName = getQueryName(firstOperationNode)
+  if (!queryName) {
+    throw new Error('Unnamed query found in the document node')
+  }
+  return [queryName, getQueryFields(firstOperationNode, fragments)]
 }
