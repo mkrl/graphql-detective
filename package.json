@@ -2,7 +2,7 @@
   "name": "@graphql-detective/root",
   "version": "1.0.0",
   "scripts": {
-    "build:lib": "pnpm -r build",
+    "build:lib": "pnpm recursive run --sort build",
     "preview:urql": "pnpm -filter \"@graphql-detective/preview\" urql",
     "preview:apollo": "pnpm -filter \"@graphql-detective/preview\" apollo",
     "check": "biome check --write",
