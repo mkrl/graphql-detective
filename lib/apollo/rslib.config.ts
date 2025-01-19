@@ -1,15 +1,3 @@
-import { defineConfig } from '@rslib/core'
+import commonConfig from '../rslib.config'
 
-export default defineConfig({
-  lib: [
-    {
-      format: 'esm',
-      syntax: 'es2021',
-      dts: true,
-    },
-  ],
-  output: {
-    sourceMap: true,
-    target: 'web',
-  },
-})
+export default commonConfig

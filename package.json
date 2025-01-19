@@ -2,14 +2,15 @@
   "name": "@graphql-detective/root",
   "version": "1.0.0",
   "scripts": {
-    "build": "pnpm -filter \"@graphql-detective/core\" build",
+    "build:lib": "pnpm -r build",
+    "preview:urql": "pnpm -filter \"@graphql-detective/preview\" urql",
+    "preview:apollo": "pnpm -filter \"@graphql-detective/preview\" apollo",
     "check": "biome check --write",
-    "dev": "rslib build --watch",
-    "format": "biome format --write",
-    "test": "vitest run"
+    "format": "biome format --write"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.3"
+    "@biomejs/biome": "^1.9.3",
+    "@rslib/core": "^0.3.1"
   },
   "private": true
 }

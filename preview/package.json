@@ -8,7 +8,6 @@
     "dev:mock": "node src/graphql-mock-server.ts",
     "apollo": "PUBLIC_CLIENT=apollo pnpm run --parallel \"/^dev:.*/\"",
     "urql": "PUBLIC_CLIENT=urql pnpm run --parallel \"/^dev:.*/\"",
-    "build": "rsbuild build",
     "preview": "rsbuild preview"
   },
   "dependencies": {

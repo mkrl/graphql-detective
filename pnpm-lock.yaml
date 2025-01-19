@@ -11,6 +11,9 @@ importers:
       '@biomejs/biome':
         specifier: ^1.9.3
         version: 1.9.4
+      '@rslib/core':
+        specifier: ^0.3.1
+        version: 0.3.1(typescript@5.7.3)
 
   lib/apollo:
     dependencies:
