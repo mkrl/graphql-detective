@@ -1,16 +1,8 @@
 import '../App.css'
 import { gql, useQuery } from '@apollo/client'
+import { defaultQuery } from '../queries/default.ts'
 
-const GET_LOCATIONS = gql`
-  query GetLocations {
-    locations {
-      id
-      name
-      description
-      photo
-    }
-  }
-`
+const GET_LOCATIONS = gql(defaultQuery)
 
 export const ApolloComponent = () => {
   const { loading, data } = useQuery(GET_LOCATIONS)
@@ -21,8 +13,8 @@ export const ApolloComponent = () => {
         <p>Loading...</p>
       ) : (
         <ul>
-          {data.locations.map((location) => (
-            <li key={location.id}>{location.name}</li>
+          {data.author.posts.map((post) => (
+            <li key={post.id}>{post.title}</li>
           ))}
         </ul>
       )}

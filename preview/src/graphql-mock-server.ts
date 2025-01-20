@@ -4,6 +4,20 @@ import { addMocksToSchema } from '@graphql-tools/mock'
 import { makeExecutableSchema } from '@graphql-tools/schema'
 
 const schemaString = `
+  interface Creature {
+    id: Int!
+    name: String
+  }
+  type Human implements Creature {
+    id: Int!
+    name: String
+    totalFingers: Int
+  }
+  type Android implements Creature {
+    id: Int!
+    name: String
+    totalCores: Int
+  }
   type Author {
     id: Int!
     firstName: String
@@ -39,4 +53,4 @@ const server = new ApolloServer({
 
 const { url } = await startStandaloneServer(server, { listen: { port: 4000 } })
 
-console.log(`🚀 Server listening at: ${url}`)
+console.log(`🚀 GraphQL Mock Server listening at: ${url}`)

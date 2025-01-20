@@ -9,7 +9,7 @@ import { detectiveLink } from '@graphql-detective/apollo'
 import { ApolloComponent } from './ApolloComponent.tsx'
 
 const httpLink = new HttpLink({
-  uri: 'https://flyby-router-demo.herokuapp.com/',
+  uri: 'http://localhost:4000/',
 })
 
 const client = new ApolloClient({

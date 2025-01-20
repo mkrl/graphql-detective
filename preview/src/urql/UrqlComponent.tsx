@@ -1,19 +1,8 @@
 import '../App.css'
 import { gql, useQuery } from 'urql'
+import { defaultQuery } from '../queries/default.ts'
 
-const GET_AUTHOR = gql`
-    query getAuthor {
-      author(id: 6) {
-        firstName
-        id
-        lastName
-        posts {
-          title
-          id
-        }
-      }
-    }
-`
+const GET_AUTHOR = gql(defaultQuery)
 
 export const UrqlComponent = () => {
   const [result] = useQuery({ query: GET_AUTHOR })
