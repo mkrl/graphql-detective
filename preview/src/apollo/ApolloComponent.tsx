@@ -1,8 +1,9 @@
 import '../App.css'
 import { gql, useQuery } from '@apollo/client'
 import { defaultQuery } from '../queries/default.ts'
+import { fragmentQuery } from '../queries/fragment.ts'
 
-const GET_LOCATIONS = gql(defaultQuery)
+const GET_LOCATIONS = gql(fragmentQuery)
 
 export const ApolloComponent = () => {
   const { loading, data } = useQuery(GET_LOCATIONS)

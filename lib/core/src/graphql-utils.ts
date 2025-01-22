@@ -33,6 +33,7 @@ export const getQueryFields = (docNode: ParsableNode, fragments: Fragments) => {
         if (
           childNode.kind === Kind.FIELD &&
           node.kind !== Kind.INLINE_FRAGMENT &&
+          node.kind !== Kind.FRAGMENT_DEFINITION &&
           // This condition is here so operation names (query names) are not included in the path
           node.kind !== Kind.OPERATION_DEFINITION
         ) {

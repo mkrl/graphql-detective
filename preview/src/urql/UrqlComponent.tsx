@@ -1,8 +1,9 @@
 import '../App.css'
 import { gql, useQuery } from 'urql'
 import { defaultQuery } from '../queries/default.ts'
+import { fragmentQuery } from '../queries/fragment.ts'
 
-const GET_AUTHOR = gql(defaultQuery)
+const GET_AUTHOR = gql(fragmentQuery)
 
 export const UrqlComponent = () => {
   const [result] = useQuery({ query: GET_AUTHOR })
