@@ -26,6 +26,9 @@
     "enabled": true,
     "rules": {
       "recommended": true,
+      "style": {
+        "noArguments": "off"
+      },
       "complexity": {
         "noForEach": {
           "level": "off"
