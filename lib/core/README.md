@@ -1,23 +1,10 @@
-# Rslib Project
+<h1 align="center">@graphql-detective/core</h1>
 
-## Setup
+<p align="center">Shared guts of `graphql-detective`</p>
 
-Install the dependencies:
 
-```bash
-pnpm install
-```
+## Installation
 
-## Get Started
+Don't.
 
-Build the library:
-
-```bash
-pnpm build
-```
-
-Build the library in watch mode:
-
-```bash
-pnpm dev
-```
+This is a shared dependency of `@graphql-detective/apollo` and `@graphql-detective/urql`.

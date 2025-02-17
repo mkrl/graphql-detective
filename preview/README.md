@@ -4,7 +4,7 @@ Fiddle around and test various integrations with different client frameworks.
 
 ## Setup
 
-Node 23+ is required to run the graphql mock server.
+Node 23+ is required to run the graphql mock server (yes, you can finally directly run `.ts` files!).
 
 Install the dependencies:
 
@@ -24,14 +24,8 @@ or
 pnpm urql
 ```
 
-Build the app for production:
+When making code changes outside the preview scope (for example, in `/libs/core`), be sure to rebuild the dependencies from the root directory:
 
 ```bash
-pnpm build
-```
-
-Preview the production build locally:
-
-```bash
-pnpm preview
+pnpm build:lib
 ```
