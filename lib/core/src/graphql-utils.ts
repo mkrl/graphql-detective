@@ -5,6 +5,7 @@ import type {
   SelectionNode,
 } from 'graphql'
 import { Kind } from 'graphql'
+import { PATH_SEPARATOR } from './proxy.ts'
 
 export type Fragments = {
   [key: string]: FragmentDefinitionNode
@@ -31,13 +32,15 @@ export const getQueryFields = (docNode: ParsableNode, fragments: Fragments) => {
         let newParent = ''
 
         if (
-          childNode.kind === Kind.FIELD &&
+          (childNode.kind === Kind.FIELD ||
+            childNode.kind === Kind.INLINE_FRAGMENT) &&
           node.kind !== Kind.INLINE_FRAGMENT &&
           node.kind !== Kind.FRAGMENT_DEFINITION &&
           // This condition is here so operation names (query names) are not included in the path
           node.kind !== Kind.OPERATION_DEFINITION
         ) {
-          newParent = parentPath + (parentPath ? '.' : '') + node.name?.value
+          newParent =
+            parentPath + (parentPath ? PATH_SEPARATOR : '') + node.name?.value
         } else {
           newParent = parentPath
         }

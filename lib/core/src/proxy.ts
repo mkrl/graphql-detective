@@ -7,7 +7,7 @@ type ObjectWithPaths<TargetType> = {
   nodePath: string
 } & TargetType
 
-const PATH_SEPARATOR = '.'
+export const PATH_SEPARATOR = '.'
 
 const EXCLUDED_PROPS = ['__typename', 'nodePath', 'length']
 

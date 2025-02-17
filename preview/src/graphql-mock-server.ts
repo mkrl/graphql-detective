@@ -22,6 +22,7 @@ const schemaString = `
     id: Int!
     firstName: String
     lastName: String
+    identity: Creature
     posts: [Post]
   }
 
