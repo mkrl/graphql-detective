@@ -11,7 +11,7 @@ export const UrqlComponent = () => {
 
   const { data, fetching } = result
   return (
-    <div className="content">
+    <>
       <h1>GraphQL Detective @ Urql</h1>
       {fetching ? (
         <p>Loading...</p>
@@ -22,6 +22,6 @@ export const UrqlComponent = () => {
           ))}
         </ul>
       )}
-    </div>
+    </>
   )
 }

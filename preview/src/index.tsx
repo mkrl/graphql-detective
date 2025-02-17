@@ -15,7 +15,15 @@ const renderApp = () => {
 }
 
 const rootEl = document.getElementById('root')
+
 if (rootEl) {
   const root = ReactDOM.createRoot(rootEl)
-  root.render(<StrictMode>{renderApp()}</StrictMode>)
+  root.render(
+    <StrictMode>
+      <div className="content">
+        <img src="./detective_logo.svg" alt="Graphql Detective logo" />
+        {renderApp()}
+      </div>
+    </StrictMode>,
+  )
 }

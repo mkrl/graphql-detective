@@ -9,7 +9,7 @@ const GET_LOCATIONS = gql(inlineFragmentQuery)
 export const ApolloComponent = () => {
   const { loading, data } = useQuery(GET_LOCATIONS)
   return (
-    <div className="content">
+    <>
       <h1>GraphQL Detective @ Apollo</h1>
       {loading ? (
         <p>Loading...</p>
@@ -20,6 +20,6 @@ export const ApolloComponent = () => {
           ))}
         </ul>
       )}
-    </div>
+    </>
   )
 }
