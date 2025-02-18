@@ -25,7 +25,7 @@ While this idea was talked about a while ago (see [Reddit Engineering Blog](http
 
 ## Disclaimer
 
-This is NOT intended to be used in production This should never end up in your final bundle, you set it up, test your suspicions, and then remove it. 
+This is NOT intended to be used in production. This should never end up in your final bundle, you set it up, test your suspicions, and remove it. 
 
 Very early in development, but somewhat battle-tested in a few massive codebases.
 
