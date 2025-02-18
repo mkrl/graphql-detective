@@ -28,7 +28,6 @@
     "typescript": "^5.7.3",
     "vitest": "^2.1.8"
   },
-  "private": true,
   "dependencies": {
     "@apollo/client": "^3.12.6",
     "@graphql-detective/core": "workspace:*"
