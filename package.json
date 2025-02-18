@@ -6,6 +6,7 @@
     "release": "pnpm run build:lib && pnpm --filter \"./lib/**\" publish --no-git-checks",
     "preview:urql": "pnpm -filter \"@graphql-detective/preview\" urql",
     "preview:apollo": "pnpm -filter \"@graphql-detective/preview\" apollo",
+    "changeset": "changeset",
     "check": "biome check --write",
     "format": "biome format --write"
   },
