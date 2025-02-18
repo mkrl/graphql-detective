@@ -1,6 +1,6 @@
 {
   "name": "@graphql-detective/apollo",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "type": "module",
   "exports": {
     ".": {
@@ -10,7 +10,10 @@
   },
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "build": "rslib build",
     "dev": "rslib build --watch",
