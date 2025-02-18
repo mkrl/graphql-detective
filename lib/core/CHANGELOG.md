@@ -1,5 +1,11 @@
 # @graphql-detective/core
 
+## 0.1.2
+
+### Patch Changes
+
+- 94f496f: Initial release
+
 ## 0.1.1
 
 ### Patch Changes

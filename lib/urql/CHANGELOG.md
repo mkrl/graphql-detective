@@ -1,5 +1,13 @@
 # @graphql-detective/urql
 
+## 0.1.2
+
+### Patch Changes
+
+- 94f496f: Initial release
+- Updated dependencies [94f496f]
+  - @graphql-detective/core@0.1.2
+
 ## 0.1.1
 
 ### Patch Changes
