@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build:lib": "pnpm recursive run --sort build",
+    "publish": "pnpm run build:lib && changeset publish",
     "preview:urql": "pnpm -filter \"@graphql-detective/preview\" urql",
     "preview:apollo": "pnpm -filter \"@graphql-detective/preview\" apollo",
     "check": "biome check --write",
