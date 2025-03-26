@@ -2,18 +2,29 @@
 
 <p align="center">Track unused fields in your GraphQL queries at runtime</p>
 
+
+## Installation
+
+The core package is framework-agnostic, but specific to a GraphQL client you use.
+
+Please see the corresponding docs for the client you are using:
+
+- [Apollo](./lib/apollo/README.md)
+- [Urql](./lib/urql/README.md)
+
 ## Why?
 
-When working with GraphQL on a scale, it is easy to lose track of which fields are actually being used in your application. This usually leads to over-fetching and performance issues. 
+When working with GraphQL on a scale, it is easy to lose track of which fields are actually being used in your application. This usually leads to over-fetching and performance issues.
 
+Static analysis and good type-safe code generation can certainly help, but in a lot of cases like dynamic queries, object spreads and destructuring, or passing objects as props, it is not always possible to know which fields are actually being accessed at runtime.
 
-Yes, you heard this right, this is not a static analysis tool. While there are several fantastic solutions for static analysis out there, it is not a 100% reliable way to know which fields are ACTUALLY accessed at runtime. This is because static analysis can't always infer things like object spreads, passing objects as props or conditionally constructing new data.
+Yes, you heard this right, this is not a static analysis tool.
 
 ## How?
 
 Proxies! The basic idea is very simple and was around for quite some time.
 
-When data comes back from the GraphQL endpoint, we take the entire data object, and recursively traverse it to create a tracking proxy. The app then recieves the proxied object instead of the original data.
+When data comes back from the GraphQL endpoint, we take the entire data object, and recursively traverse it to create a tracking proxy. The app then receives the proxied object instead of the original data.
 
 In the meantime, we also parse the GraphQL query document and store the representation of all potential usage paths.
 
@@ -25,15 +36,6 @@ While this idea was talked about a while ago (see [Reddit Engineering Blog](http
 
 ## Disclaimer
 
-This is NOT intended to be used in production. This should never end up in your final bundle, you set it up, test your suspicions, and remove it. 
+This is NOT intended to be used in production. This should never end up in your final bundle, you set it up, test your suspicions, and roll it back.
 
-Very early in development, but somewhat battle-tested in a few massive codebases.
-
-## Installation
-
-The core package is framework-agnostic, but specific to a GraphQL client you use.
-
-Please see the corresponding documents for the client you are using:
-
-- [Apollo](./lib/apollo/README.md)
-- [Urql](./lib/urql/README.md)
+Very early in development, but somewhat battle-tested in a few pretty big codebases.
