@@ -6,6 +6,7 @@ import {
   recordQuery,
   trackUsage,
 } from '@graphql-detective/core'
+import { createDetectiveUI } from '@graphql-detective/core'
 
 export const detectiveLink = new ApolloLink((operation, forward) => {
   /* Nothing to do before server returns the response */
@@ -17,6 +18,7 @@ export const detectiveLink = new ApolloLink((operation, forward) => {
     const [, fields] = parseDocumentNode(operation.query)
     recordQuery(operation.operationName, fields)
     initUsageStoreForQuery(operation.operationName)
+    createDetectiveUI()
 
     return {
       data: proxyTrackData(data, (path) => {

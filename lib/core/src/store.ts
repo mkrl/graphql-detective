@@ -1,7 +1,12 @@
 import { atom, batched } from 'nanostores'
+import { dset } from 'dset'
 
 type FieldStore = {
   [queryName: string]: Set<string>
+}
+
+export type UsageSchema = {
+  [key: string]: boolean | UsageSchema
 }
 
 export const $usageStore = atom<FieldStore>({})
@@ -40,6 +45,23 @@ export const $unusedQueryFields = batched(
   },
 )
 
+export const $usageSchema = batched(
+  [$unusedQueryFields, $queryStore],
+  (unusedFields, queries) => {
+    const querySchema: UsageSchema = {}
+    Object.keys(queries).forEach((queryName) => {
+      queries[queryName].forEach((field) => {
+        dset(
+          querySchema,
+          `${queryName}.${field}`,
+          !unusedFields[queryName].has(field),
+        )
+      })
+    })
+    return querySchema
+  },
+)
+
 // Debugging
 // @ts-ignore
 window.$usageStore = $usageStore
@@ -47,3 +69,5 @@ window.$usageStore = $usageStore
 window.$queryStore = $queryStore
 // @ts-ignore
 window.$unusedQueryFields = $unusedQueryFields
+// @ts-ignore
+window.$usageSchema = $usageSchema
