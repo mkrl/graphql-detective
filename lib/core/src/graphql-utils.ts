@@ -32,8 +32,11 @@ export const getQueryFields = (docNode: ParsableNode, fragments: Fragments) => {
         let newParent = ''
 
         if (
+          // Only concat the parent path if the child node is a field or fragment
           (childNode.kind === Kind.FIELD ||
+            childNode.kind === Kind.FRAGMENT_SPREAD ||
             childNode.kind === Kind.INLINE_FRAGMENT) &&
+          // Exclude fragments and operations from the path
           node.kind !== Kind.INLINE_FRAGMENT &&
           node.kind !== Kind.FRAGMENT_DEFINITION &&
           // This condition is here so operation names (query names) are not included in the path
