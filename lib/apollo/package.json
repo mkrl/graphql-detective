@@ -5,15 +5,14 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
+      "source": "./src/index.ts",
       "import": "./dist/index.js"
     }
   },
   "module": "./dist/index.js",
+  "source": "./src/index.ts",
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
+  "files": ["dist", "src"],
   "scripts": {
     "build": "rslib build",
     "dev": "rslib build --watch",
