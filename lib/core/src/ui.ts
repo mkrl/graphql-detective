@@ -29,7 +29,7 @@ export const createUsageSchemaViewer = (
       }
 
       .schema-item {
-          margin: 2px 0;
+          padding: 2px 0;
       }
 
       .schema-key {
@@ -51,12 +51,20 @@ export const createUsageSchemaViewer = (
           margin-left: 4px;
       }
 
-      .schema-object:has(.schema-false) {
+      .schema-item:has(.schema-false) {
           background-color: #ffe8ea;
       }
 
-      .schema-object:not(:has(.schema-false)) {
+      .schema-item:not(:has(.schema-false)) {
           background-color: #f1ffe8;
+      }
+
+      .schema-item:has(.schema-false) > .schema-key  {
+          color: #cb2431;
+      }
+
+      .schema-item:not(:has(.schema-false)) > .schema-key {
+          color: #22863a;
       }
 
       .schema-bullet {
@@ -64,11 +72,7 @@ export const createUsageSchemaViewer = (
           width: 8px;
           height: 8px;
           border-radius: 50%;
-          margin-right: 6px;
-      }
-
-      .schema-bullet-true {
-          background-color: #22863a;
+          margin-left: 6px;
       }
 
       .schema-bullet-false {
@@ -205,14 +209,16 @@ const buildTopLevelSchemas = (obj: UsageSchema, parent: HTMLElement) => {
       const keyElement = document.createElement('div')
       keyElement.className = 'schema-key'
 
-      const bulletElement = document.createElement('span')
-      bulletElement.className = `schema-bullet schema-bullet-${value}`
-      keyElement.appendChild(bulletElement)
-
       const keyText = document.createElement('span')
       keyText.textContent = key
       keyText.className = value ? 'schema-true' : 'schema-false'
       keyElement.appendChild(keyText)
+
+      if (!value) {
+        const bulletElement = document.createElement('span')
+        bulletElement.className = `schema-bullet schema-bullet-${value}`
+        keyElement.appendChild(bulletElement)
+      }
 
       itemElement.appendChild(keyElement)
       parent.appendChild(itemElement)
@@ -230,16 +236,18 @@ const buildSchemaUI = (obj: UsageSchema, parent: HTMLElement) => {
     keyElement.className = 'schema-key'
 
     if (typeof value === 'boolean') {
-      // Create bullet indicator
-      const bulletElement = document.createElement('span')
-      bulletElement.className = `schema-bullet schema-bullet-${value}`
-      keyElement.appendChild(bulletElement)
-
       // Create key text with color
       const keyText = document.createElement('span')
       keyText.textContent = key
       keyText.className = value ? 'schema-true' : 'schema-false'
       keyElement.appendChild(keyText)
+
+      // Create bullet indicator
+      if (!value) {
+        const bulletElement = document.createElement('span')
+        bulletElement.className = `schema-bullet schema-bullet-${value}`
+        keyElement.appendChild(bulletElement)
+      }
 
       itemElement.appendChild(keyElement)
     } else {

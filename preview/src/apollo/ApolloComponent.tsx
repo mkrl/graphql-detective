@@ -17,7 +17,6 @@ export const ApolloComponent = () => {
       ) : (
         <ul>
           {data.author.firstName}
-          {data.author.lastName}
           {data.author.id}
           {data.author.posts.map((post) => (
             <li key={post.id}>{post.title}</li>
