@@ -14,7 +14,7 @@ export const $queryStore = atom<FieldStore>({})
 
 export const initUsageStoreForQuery = (queryName: string) => {
   $usageStore.set({
-    ...$queryStore.get(),
+    ...$usageStore.get(),
     [queryName]: new Set<string>(),
   })
 }
