@@ -1,13 +1,9 @@
 export const defaultQuery = `
-    query getAuthor {
-      author(id: 6) {
-        firstName
+    query getChampion {
+      champion(id: 6) {
         id
-        lastName
-        posts {
-          title
-          id
-        }
+        name
+        proposals
       }
     }
 `

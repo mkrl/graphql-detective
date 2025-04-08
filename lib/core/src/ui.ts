@@ -1,4 +1,4 @@
-import { $usageSchema, type UsageSchema } from './store.ts'
+import { $devtoolsUIStore, $usageSchema, type UsageSchema } from './store.ts'
 
 const create = (tag: string, className: string) => {
   const element = document.createElement(tag)
@@ -271,11 +271,14 @@ const buildSchemaUI = (obj: UsageSchema, parent: HTMLElement) => {
 let schemaViewer: { update: (schema: UsageSchema) => void } | null = null
 
 export const createDetectiveUI = () => {
-  let containerElement = document.getElementById('graphql-detective-ui')
+  const container = $devtoolsUIStore.get()
 
-  if (containerElement === null) {
-    containerElement = create('div', 'graphql-detective-ui')
+  if (container === null) {
+    const containerElement = create('div', 'graphql-detective-ui')
     document.body.appendChild(containerElement)
+
+    $devtoolsUIStore.set(containerElement)
+
     containerElement.style.position = 'fixed'
     containerElement.style.top = '2%'
     containerElement.style.right = '2%'

@@ -1,16 +1,12 @@
 export const fragmentQuery = `
-    query getAuthor {
-      author(id: 6) {
-        ...authorDetails
+    query getProposalWithFragment {
+      proposal(id: 6) {
+        ...proposalDetails
         id
-        posts {
-          title
-          id
-        }
       }
     }
-    fragment authorDetails on Author {
-      firstName
-      lastName
+    fragment proposalDetails on Proposal {
+      champions
+      stage
     }
 `

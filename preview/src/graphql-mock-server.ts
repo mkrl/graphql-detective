@@ -26,6 +26,18 @@ const schemaString = `
     posts: [Post]
   }
 
+  type Champion {
+    id: Int!
+    proposals: [Int]
+    name: String
+  }
+
+  type Proposal {
+    id: Int!
+    champions: [Int]
+    stage: Int
+  }
+
   type Post {
     id: Int!
     title: String
@@ -36,6 +48,8 @@ const schemaString = `
   type Query {
     posts: [Post]
     author(id: Int!): Author
+    champion(id: Int!): Champion
+    proposal(id: Int!): Proposal
   }
 
   type Mutation {

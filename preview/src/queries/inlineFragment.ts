@@ -1,5 +1,5 @@
 export const inlineFragmentQuery = `
-    query getAuthor {
+    query getAuthorWithInlineFragment {
       author(id: 6) {
         identity {
             ... on Human {

@@ -12,6 +12,8 @@ export type UsageSchema = {
 export const $usageStore = atom<FieldStore>({})
 export const $queryStore = atom<FieldStore>({})
 
+export const $devtoolsUIStore = atom<HTMLElement | null>(null)
+
 export const initUsageStoreForQuery = (queryName: string) => {
   $usageStore.set({
     ...$usageStore.get(),

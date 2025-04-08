@@ -1,4 +1,5 @@
 import {
+  createDetectiveUI,
   initUsageStoreForQuery,
   parseDocumentNode,
   proxyTrackData,
@@ -27,6 +28,7 @@ export const detectiveExchange: Exchange =
           const [queryName, fields] = parseDocumentNode(op.operation.query)
           recordQuery(queryName, fields)
           initUsageStoreForQuery(queryName)
+          createDetectiveUI()
 
           return {
             ...op,
